@@ -28,9 +28,13 @@ export default function Profile() {
             width: 90, height: 90, borderRadius: 24, fontSize: 52,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             background: 'var(--card)', border: '3px solid var(--primary)',
-            boxShadow: '0 0 0 6px rgba(99,102,241,.15)',
+            boxShadow: '0 0 0 6px rgba(99,102,241,.15)', overflow: 'hidden'
           }}>
-            {profile.avatar || '🦁'}
+            {(profile.avatar && (profile.avatar.startsWith('http') || profile.avatar.startsWith('data:'))) ? (
+              <img src={profile.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ) : (
+              profile.avatar || '🦁'
+            )}
           </div>
 
           <div style={{ flex: 1, minWidth: 200 }}>

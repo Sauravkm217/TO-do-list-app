@@ -69,8 +69,12 @@ export default function Sidebar() {
         }} onClick={() => setPage('profile')}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{ fontSize: 28, width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center',
-              background: 'var(--card)', borderRadius: 12, border: '1px solid var(--border)' }}>
-              {profile.avatar || '🦁'}
+              background: 'var(--card)', borderRadius: 12, border: '1px solid var(--border)', overflow: 'hidden' }}>
+              {(profile.avatar && (profile.avatar.startsWith('http') || profile.avatar.startsWith('data:'))) ? (
+                <img src={profile.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                profile.avatar || '🦁'
+              )}
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--t1)', overflow: 'hidden',
